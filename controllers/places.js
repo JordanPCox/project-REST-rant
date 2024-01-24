@@ -1,5 +1,14 @@
 const router = require('express').Router()
 
+router.get('/new', (req, res) => {
+    res.render('places/new')
+})
+
+router.get('/:id', (req, res) => {
+    const placeId = req.params.id
+    res.send(`Displaying details for place with ID $[placeId}`)
+})
+
 router.get('/', (req, res) => {
     let places = [{
         name: 'H-Thai-ML',
