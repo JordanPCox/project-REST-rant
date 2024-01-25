@@ -27,8 +27,8 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-    const placeData = req.body
-    res.redirect('/')
+    console.log(req.body)
+    res.send('POST /places')
 })
 
 module.exports = router
