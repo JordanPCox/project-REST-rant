@@ -26,7 +26,7 @@ router.get('/', (req, res) => {
     res.render('places/index', {places})
 })
 
-router.post('/places', (req, res) => {
+router.post('/', (req, res) => {
     const placeData = req.body
     res.redirect('/')
 })
