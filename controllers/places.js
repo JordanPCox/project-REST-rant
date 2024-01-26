@@ -19,19 +19,6 @@ router.get('/:id', (req, res) => {
 })
 
 router.get('/', (req, res) => {
-    // let places = [{
-    //     name: 'H-Thai-ML',
-    //     city: 'Seattle',
-    //     state: 'WA',
-    //     cousines: 'Thai, Pan-Asian',
-    //     pic: '/images/img-3.jpg'
-    // }, {
-    //     name: 'Coding Cat Cafe',
-    //     city: 'Phoenix',
-    //     state: 'AZ',
-    //     cuisines: 'Coffee, Bakery',
-    //     pic: '/images/img-4.jpg'
-    // }]
     res.render('places/index', {places})
 })
 
@@ -48,5 +35,20 @@ router.post('/', (req, res) => {
     places.push(req.body)
     res.redirect('/places')
 })
+
+router.delete('/:id', (req, res) => {
+    let id = Number(req.params.id)
+    if (isNaN(id)) {
+      res.render('error404')
+    }
+    else if (!places[id]) {
+      res.render('error404')
+    }
+    else {
+      places.splice(id, 1)
+      res.redirect('/places')
+    }
+  })
+  
 
 module.exports = router
