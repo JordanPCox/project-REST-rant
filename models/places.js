@@ -2,7 +2,7 @@ module.exports = [{
     name: 'H-Thai-ML',
     city: 'Seattle',
     state: 'WA',
-    cousines: 'Thai, Pan-Asian',
+    cuisines: 'Thai, Pan-Asian',
     pic: '/images/img-3.jpg'
 }, {
     name: 'Coding Cat Cafe',
