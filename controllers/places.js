@@ -28,7 +28,6 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-    console.log(req.body)
     if (!req.body.pic) {
         req.body.pic = 'http://placekitten.com/400/400'
     }
