@@ -25,7 +25,7 @@ function Show(data) {
           </div>
 
           <div className="col-md-6">
-            <img src={pic} alt={name} className="img-fluid" />
+            <img src={data.place.pic} alt={name} className="img-fluid" />
             <h3>Located in {data.place.city}, {data.place.state}</h3>
           </div>
         </div>
