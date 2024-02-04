@@ -3,16 +3,20 @@ const db = require('../models')
 
 router.get('/', (req, res) => {
   db.Place.find()
-  .then((places) => {
-    res.render('places/index', { places })
+  .then((places)=> {
+    res.render('places/index', {places})
   })
-  .catch(err => {
+  .catch( err => {
     console.log(err)
     res.render('error404')
   })
+
 })
 
 router.post('/', (req, res) => {
+  if (!req.body.pic) {
+    req.body.pic = 'http://placekitten.com/350/350'
+  }
   db.Place.create(req.body)
   .then(() => {
     res.redirect('/places')
@@ -29,12 +33,14 @@ router.get('/new', (req, res) => {
 
 router.get('/:id', (req, res) => {
   db.Place.findById(req.params.id)
+  .populate('comments')
   .then(place => {
-    res.render('places/show', { place })
+      console.log(place.comments)
+      res.render('places/show', { place })
   })
   .catch(err => {
-    console.log('err', err)
-    res.render('error404')
+      console.log('err', err)
+      res.render('error404')
   })
 })
 
@@ -53,6 +59,37 @@ router.get('/:id/edit', (req, res) => {
 router.post('/:id/rant', (req, res) => {
   res.send('GET /places/:id/rant stub')
 })
+
+router.post('/:id/comment', (req, res) => {
+  // Convert "rant" from "on" or undefined to true/false
+  if (req.body.rant === "on") {
+    req.body.rant = true;
+  } else {
+    // Assuming unchecked boxes do not send any value, we explicitly set it to false
+    req.body.rant = false;
+  }
+  db.Place.findById(req.params.id)
+    .then(place => {
+        db.Comment.create(req.body)
+        .then(comment => {
+            place.comments.push(comment.id);
+            place.save()
+            .then(() => {
+                res.redirect(`/places/${req.params.id}`);
+            })
+        })
+        .catch(err => {
+          console.log(err);
+            res.render('error404');
+        })
+    })
+    .catch(err => {
+      console.log(err);
+        res.render('error404');
+    })
+});
+
+
 
 router.delete('/:id/rant/:rantId', (req, res) => {
     res.send('GET /places/:id/rant/:rantId stub')
