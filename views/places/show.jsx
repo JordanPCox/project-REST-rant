@@ -8,7 +8,27 @@ function Show(data) {
       No comments yet!
     </h3>
   )
+  let rating = (
+    <h3 className="inactive">
+      Not yet rated
+    </h3>
+  )
   if (data.place.comments.length) {
+    let sumRatings = data.place.comments.reduce((tot, c) => {
+      return tot + c.stars
+    }, 0)
+    let averageRating = Math.round(sumRatings / data.place.comments.length)
+    let stars =''
+    for (let i =0; i < averageRating; i++) {
+      stars += '⭐'
+    }
+
+    rating = (
+      <h3>
+        {stars}
+      </h3>
+    )
+
     comments = data.place.comments.map(c => {
       return (
         <div key={c.id} className="border p-3 mb-3">
@@ -32,7 +52,8 @@ function Show(data) {
           <div className="col-md-6">
             <section className="mt-4">
               <h2>Rating</h2>
-              <p>Currently unrated.</p>
+              {rating}
+              <br />
               <h3>{data.place.showEstablished}</h3>
               <h4>Serving {data.place.cuisines}</h4>
             </section>
@@ -77,7 +98,7 @@ function Show(data) {
             </a>
           </div>
           <div className="col-md-6">
-            <form method="POST" action={`/places/${data.id}?_method=DELETE`}>
+            <form method="POST" action={`/places/${data.place.id}?_method=DELETE`}>
               <button type="submit" className="btn btn-danger float-md-right">
                 Delete
               </button>
