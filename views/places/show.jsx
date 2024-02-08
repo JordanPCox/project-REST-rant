@@ -63,24 +63,28 @@ function Show(data) {
               {comments}
               <form method="POST" action={`/places/${data.place.id}/comment`} className="p-3 border-top mt-3">
                 <div className="form-row">
-                  <div className="form-group col-md-6">
+                  <div className="form-group col-md-6 mt-1">
                     <label htmlFor="author">Author</label>
-                    <input type="text" className="form-control" id="author" name="author" placeholder="Enter author name" required/>
+                    <input type="text" className="form-control mt-1" id="author" name="author" placeholder="Enter author name" required/>
                   </div>
-                  <div className="form-group col-md-6">
+
+                  <div className="form-group col-md-6 mt-3">
                     <label htmlFor="stars">Star Rating</label>
-                    <input type="number" className="form-control" id="stars" name="stars" step="0.5" placeholder="Rate from 1 to 5" required/>
+                    <input type="number" className="form-control mt-1" id="stars" name="stars" step="0.5" placeholder="Rate from 1 to 5" required/>
                   </div>
                 </div>
-                <div className="form-group">
+
+                <div className="form-group mt-3">
                   <label htmlFor="content">Content</label>
-                  <textarea className="form-control" id="content" name="content" rows="3" placeholder="Enter content" required></textarea>
+                  <textarea className="form-control mt-1" id="content" name="content" rows="3" placeholder="Enter content" required></textarea>
                 </div>
-                <div className="form-check mb-3">
+
+                <div className="form-group form-check d-flex align-items-center justify-content-center mt-3">
                   <input type="checkbox" className="form-check-input" id="rant" name="rant"/>
-                  <label className="form-check-label" htmlFor="rant">Rant</label>
+                  <label className="form-check-label ml-1" htmlFor="rant">Rant</label>
                 </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
+
+                <button type="submit" className="btn btn-primary mt-3">Submit</button>
               </form>
             </section>
           </div>
@@ -92,15 +96,15 @@ function Show(data) {
         </div>
 
         <div className="row mt-3">
-          <div className="col-md-6">
+          <div className="col-md-6 mb-2">
             <a href={`/places/${data.place.id}/edit`} className="btn btn-warning">
-              Edit
+              Edit Place
             </a>
           </div>
           <div className="col-md-6">
             <form method="POST" action={`/places/${data.place.id}?_method=DELETE`}>
               <button type="submit" className="btn btn-danger float-md-right">
-                Delete
+                Delete Place
               </button>
             </form>
           </div>
