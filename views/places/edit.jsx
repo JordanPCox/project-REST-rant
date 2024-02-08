@@ -4,9 +4,9 @@ const Def = require('../default.jsx')
 function edit_form (data) {
     return (
         <Def>
-          <main>
+          <main className="container mt-4">
             <h1>Edit Place</h1>
-            <form method="POST" action={`/places/${data.id}?_method=PUT`}>
+            <form method="POST" action={`/places/${data.place.id}?_method=PUT`}>
                 <div className="row">
                     <div className="form-group col-sm-6">
                         <label htmlFor="name">Place Name</label>
@@ -25,6 +25,14 @@ function edit_form (data) {
                                 value={data.place.pic}  />
                     </div>
                     <div className="form-group col-sm-6">
+                        <label htmlFor="cuisines">Cuisines</label>
+                            <input className="form-control" 
+                            id="cuisines" 
+                            name="cuisines"
+                            value={data.place.cuisines}  
+                            required />
+                    </div>
+                    <div className="form-group col-sm-6">
                         <label htmlFor="city">City</label>
                             <input className="form-control" 
                                 id="city" 
@@ -39,15 +47,15 @@ function edit_form (data) {
                                 value={data.place.state}  />
                     </div>
                     <div className="form-group col-sm-6">
-                        <label htmlFor="cuisines">Cuisines</label>
-                            <input className="form-control" 
-                            id="cuisines" 
-                            name="cuisines"
-                            value={data.place.cuisines}  
-                            required />
+                        <label htmlFor="founded">Founded</label>
+                        <input className="form-control"
+                        id="founded"
+                        name="founded"
+                        value={data.place.founded}
+                        />
                     </div>
                 </div> 
-                    <input className="btn btn-primary" type="submit" value="Submit" />
+                    <input className="btn btn-primary mt-3" type="submit" value="Update Place" />
                 </form>
           </main>
         </Def>
