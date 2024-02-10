@@ -13,7 +13,7 @@ function home () {
                     Photo by <a href="https://unsplash.com/@pwign">Anh Nguyen</a> on <a href="https://unsplash.com/">Unsplash</a>
                 </div>
                 <a href="/places">
-                    <button className="btn-primary">Places Page</button>
+                    <button className="btn btn-primary">Places Page</button>
                 </a>
             </main>
         </Def>

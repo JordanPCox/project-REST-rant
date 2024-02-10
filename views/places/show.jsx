@@ -2,7 +2,7 @@ const React = require('react')
 const Def = require('../default')
 
 function Show(data) {
-  const { name, pic } = data.place;
+  const {name} = data.place;
   let comments = (
     <h3 className="inactive">
       No comments yet!
